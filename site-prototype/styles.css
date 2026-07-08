@@ -1,17 +1,17 @@
 :root {
-  --bg: #f5f7fb;
-  --paper: #fffdfb;
-  --ink: #18324e;
-  --muted: #66758a;
-  --line: rgba(24, 50, 78, 0.12);
-  --accent: #4e7ad8;
-  --accent-dark: #2e5fc5;
-  --accent-soft: #eaf0ff;
-  --blush: #e7a0ae;
-  --warm: #fff1f3;
-  --panel: #eef4ff;
-  --dark-panel: #234463;
-  --shadow: 0 24px 60px rgba(36, 66, 112, 0.08);
+  --bg: #f3f3ef;
+  --paper: #fffdfa;
+  --ink: #122127;
+  --muted: #5f6d73;
+  --line: rgba(18, 33, 39, 0.12);
+  --accent: #0f8c78;
+  --accent-dark: #0b5a4d;
+  --accent-soft: #e7f1ed;
+  --blush: #f2dfc7;
+  --warm: #fbf3e7;
+  --panel: #e7f1ed;
+  --dark-panel: #16282f;
+  --shadow: 0 24px 60px rgba(18, 33, 39, 0.08);
   --radius-xl: 32px;
   --radius-lg: 24px;
   --radius-md: 18px;
@@ -31,9 +31,8 @@ body {
   font-family: "Segoe UI", "Helvetica Neue", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at top left, rgba(231, 160, 174, 0.2), transparent 26%),
-    radial-gradient(circle at top right, rgba(78, 122, 216, 0.18), transparent 24%),
-    linear-gradient(180deg, #fbfcff 0%, #f2f5fb 100%);
+    radial-gradient(circle at top left, rgba(15, 140, 120, 0.12), transparent 32%),
+    linear-gradient(180deg, #f8f5ee 0%, #eef1ec 100%);
 }
 
 a {
@@ -68,7 +67,7 @@ a {
   justify-content: space-between;
   gap: 24px;
   padding: 18px 22px;
-  border-radius: 28px;
+  border-radius: 24px;
   position: sticky;
   top: 14px;
   z-index: 20;
@@ -187,20 +186,20 @@ a {
 
 .ghost-button {
   padding: 12px 18px;
-  background: rgba(78, 122, 216, 0.08);
+  background: rgba(18, 33, 39, 0.05);
 }
 
 .primary-button {
   padding: 15px 22px;
-  background: linear-gradient(135deg, var(--accent-dark) 0%, var(--accent) 100%);
+  background: var(--ink);
   color: #ffffff;
   font-weight: 700;
-  box-shadow: 0 16px 34px rgba(78, 122, 216, 0.22);
+  box-shadow: 0 16px 34px rgba(18, 33, 39, 0.16);
 }
 
 .secondary-button {
   padding: 15px 22px;
-  background: rgba(231, 160, 174, 0.14);
+  background: rgba(15, 140, 120, 0.1);
   color: var(--accent-dark);
   font-weight: 700;
 }
@@ -233,13 +232,13 @@ a {
 .hero-copy {
   padding: 48px 44px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(238, 244, 255, 0.98) 62%, rgba(255, 241, 243, 0.98) 100%);
-  border: 1px solid rgba(78, 122, 216, 0.08);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(236, 246, 243, 0.98) 100%);
+  border: 1px solid rgba(18, 33, 39, 0.08);
 }
 
 .hero-panel {
   padding: 28px;
-  background: linear-gradient(180deg, #31557d 0%, #203d61 100%);
+  background: linear-gradient(180deg, #163036 0%, #21444b 100%);
   color: #f7fbfa;
 }
 
@@ -256,7 +255,7 @@ a {
 }
 
 .eyebrow {
-  background: rgba(78, 122, 216, 0.12);
+  background: rgba(15, 140, 120, 0.12);
   color: var(--accent-dark);
 }
 
@@ -305,7 +304,7 @@ h1 {
 
 .hero-points li {
   padding: 16px 18px;
-  background: linear-gradient(180deg, rgba(78, 122, 216, 0.06) 0%, rgba(231, 160, 174, 0.08) 100%);
+  background: linear-gradient(180deg, rgba(15, 140, 120, 0.06) 0%, rgba(242, 223, 199, 0.2) 100%);
   border-radius: 20px;
   color: #29405d;
   font-size: 0.95rem;

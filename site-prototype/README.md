@@ -1,6 +1,17 @@
-# MedTehMaks site prototype
+# MedTechMax v1 Unified Editable
 
-This folder contains a local B2C homepage prototype for MedTehMaks.
+This folder is the single working version to edit дальше.
+
+What this version combines:
+
+- humanized branding, logo logic, real contacts, address, and trust signals from `v0.2-humanized`
+- more relevant assortment focus from the newer MedTechMax direction: compression, orthopedics, post-operative recovery, and home support
+- the strongest newer landing pages: compression near Blokhin, post-mastectomy, discharge and recovery, selection help, and clinics
+
+Recommended editable base:
+
+- keep editing inside `site-prototype/`
+- treat this version name as the current master prototype: `MedTechMax v1 Unified Editable`
 
 Files:
 

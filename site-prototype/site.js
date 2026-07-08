@@ -11,8 +11,11 @@ const defaultBusinessData = {
   addressDisplay: "Москва, Каширское шоссе, 23",
   addressHref:
     "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9A%D0%B0%D1%88%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2C%2023",
+  mapsHref: "https://yandex.ru/maps/org/167033159095",
   responseTime: "до 15 минут",
-  deliveryRegion: "по Москве и России"
+  deliveryRegion: "по Москве и России",
+  ratingDisplay: "4.3",
+  ratingSource: "Яндекс Карты"
 };
 
 const externalConfig = window.MEDTEHMAKS_SITE_CONFIG || {};
@@ -193,7 +196,7 @@ function hydrateBusinessData() {
   });
 
   document.querySelectorAll("[data-address-link]").forEach((link) => {
-    link.setAttribute("href", businessData.addressHref);
+    link.setAttribute("href", businessData.mapsHref || businessData.addressHref);
     link.textContent = businessData.addressDisplay;
     link.setAttribute("target", "_blank");
     link.setAttribute("rel", "noreferrer");
@@ -201,6 +204,20 @@ function hydrateBusinessData() {
 
   document.querySelectorAll("[data-address-text]").forEach((node) => {
     node.textContent = businessData.addressDisplay;
+  });
+
+  document.querySelectorAll("[data-maps-link]").forEach((link) => {
+    link.setAttribute("href", businessData.mapsHref || businessData.addressHref);
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noreferrer");
+  });
+
+  document.querySelectorAll("[data-rating-value]").forEach((node) => {
+    node.textContent = businessData.ratingDisplay;
+  });
+
+  document.querySelectorAll("[data-rating-source]").forEach((node) => {
+    node.textContent = businessData.ratingSource;
   });
 
   document.querySelectorAll("[data-response-time]").forEach((node) => {
