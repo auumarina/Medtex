@@ -1,0 +1,44 @@
+<svg width="356" height="84" viewBox="0 0 356 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(0 6)">
+    <path
+      d="M29.778 15.5C23.724 15.5 18.778 20.554 18.778 26.846C18.778 33.877 24.421 39.807 32.202 46.42C38.009 51.361 42.175 55.908 44.569 59.5"
+      stroke="#E497A7"
+      stroke-width="4"
+      stroke-linecap="round"
+    />
+    <path
+      d="M31.028 50.079C30.167 46.111 30.542 41.993 32.166 38.266C34.508 32.888 39.158 28.56 44.817 27.52C49.49 26.662 54.739 27.989 57.778 31.971"
+      stroke="#E497A7"
+      stroke-width="4"
+      stroke-linecap="round"
+    />
+    <path
+      d="M30.833 47.75C36.925 47.75 43.245 46.333 49.792 43.5"
+      stroke="#E497A7"
+      stroke-width="4"
+      stroke-linecap="round"
+    />
+  </g>
+  <text
+    x="72"
+    y="40"
+    fill="#356BC7"
+    font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+    font-size="32"
+    font-weight="500"
+    letter-spacing="1.2"
+  >
+    MEDTECHMAX
+  </text>
+  <text
+    x="76"
+    y="64"
+    fill="#7D8798"
+    font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif"
+    font-size="13"
+    font-weight="500"
+    letter-spacing="0.1"
+  >
+    Ортопедия, компрессия и восстановление
+  </text>
+</svg>
