@@ -1,6 +1,6 @@
 const defaultBusinessData = {
   brandNameDisplay: "МедТехМакс",
-  brandDescriptor: "ортопедия, компрессия и товары для восстановления",
+  brandDescriptor: "компрессия, бандажи и послеоперационные товары рядом с Блохиным",
   logoMarkPath: "./assets/logo-lockup-medtehmax.svg",
   phoneDisplay: "+7 (916) 927-76-82",
   phoneHref: "tel:+79169277682",
