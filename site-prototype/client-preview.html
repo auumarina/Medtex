@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>МедТехМакс — предпросмотр для клиента</title>
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon-medtehmax.svg" />
+    <style>
+      :root {
+        --bg: #e8edf3;
+        --card: #ffffff;
+        --ink: #16324f;
+        --muted: #5f7188;
+        --accent: #0f9fbd;
+        --accent-dark: #0b7f99;
+        --line: rgba(22, 50, 79, 0.08);
+        --shadow: 0 24px 60px rgba(22, 50, 79, 0.14);
+        --radius: 28px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", Arial, sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(15, 159, 189, 0.16), transparent 32%),
+          linear-gradient(180deg, #eef3f8 0%, #dfe7ef 100%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .shell {
+        width: min(1320px, calc(100% - 32px));
+        margin: 24px auto 40px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      .preview-card,
+      .preview-card,
+      .links-card {
+        background: rgba(255, 255, 255, 0.94);
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        box-shadow: var(--shadow);
+        border-radius: var(--radius);
+        backdrop-filter: blur(10px);
+      }
+
+      .links-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .preview-card {
+        overflow: hidden;
+      }
+
+      .preview-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 18px 22px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .preview-head strong {
+        font-size: 0.96rem;
+      }
+
+      .preview-head span {
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      iframe {
+        width: 100%;
+        height: 760px;
+        border: 0;
+        background: #fff;
+      }
+
+      @media (max-width: 1100px) {
+        iframe {
+          height: 620px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .shell {
+          width: min(100% - 16px, 1320px);
+          margin: 12px auto 24px;
+        }
+
+        iframe {
+          height: 520px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <section class="hero">
+        <article class="preview-card">
+          <div class="preview-head">
+            <strong>Предпросмотр сайта МедТехМакс</strong>
+            <span>главная страница</span>
+          </div>
+          <iframe src="./index.html" title="Предпросмотр сайта МедТехМакс"></iframe>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>

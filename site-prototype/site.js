@@ -11,7 +11,8 @@ const defaultBusinessData = {
   addressDisplay: "Москва, Каширское шоссе, 23",
   addressHref:
     "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9A%D0%B0%D1%88%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2C%2023",
-  mapsHref: "https://yandex.ru/maps/org/167033159095",
+  mapsHref:
+    "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9A%D0%B0%D1%88%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2C%2023",
   responseTime: "до 15 минут",
   deliveryRegion: "по Москве и России",
   ratingDisplay: "4.3",
@@ -71,13 +72,13 @@ const scenarioContent = {
   home_care_kit: {
     title: "Нужны товары для восстановления дома",
     text:
-      "Если нужно сразу несколько товаров для восстановления дома, удобнее сначала описать ситуацию и получить короткий список подходящих вариантов.",
+      "Если нужно сразу несколько товаров для восстановления дома, удобнее коротко описать ситуацию и сразу получить понятный список того, что стоит посмотреть.",
     bullets: [
       "Бандажи, ортезы, опоры и домашние приборы",
       "Без лишних поисков по каталогу",
       "Есть быстрый переход к консультации"
     ],
-    primaryLabel: "Открыть подбор",
+    primaryLabel: "Получить помощь",
     primaryHref: "./selection-help.html",
     secondaryLabel: "Нужна помощь с выбором",
     secondaryHref: "./selection-help.html"
@@ -85,11 +86,11 @@ const scenarioContent = {
   clinics_org: {
     title: "Для клиник и организаций",
     text:
-      "Если вы подбираете товары для клиники, службы ухода или организации, здесь удобнее оставить рабочий запрос и получить ответ по делу.",
+      "Если товары нужны для клиники, службы ухода или другой организации, здесь удобнее сразу написать по поставке и быстро получить ответ.",
     bullets: [
       "Для клиник, служб ухода и НКО",
-      "Подходит для разовых и регулярных запросов",
-      "Есть отдельная форма для организаций"
+      "Подходит для разовых и постоянных поставок",
+      "Есть отдельная страница для организаций"
     ],
     primaryLabel: "Открыть страницу",
     primaryHref: "./for-clinics-organizations.html",
@@ -112,6 +113,66 @@ function hydrateBrandSystem() {
     node.textContent = businessData.brandDescriptor;
   });
 }
+
+function mountMobileNav(header, index) {
+  const nav = header.querySelector(".site-nav");
+  const brand = header.querySelector(".brand-block");
+
+  if (!nav || !brand) return;
+
+  const navId = nav.id || `site-nav-${index + 1}`;
+  nav.id = navId;
+
+  let button = header.querySelector(".nav-toggle");
+  if (!button) {
+    button = document.createElement("button");
+    button.type = "button";
+    button.className = "nav-toggle";
+    button.setAttribute("aria-label", "Открыть меню");
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-controls", navId);
+    button.innerHTML = `
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+      <span class="nav-toggle-bar" aria-hidden="true"></span>
+    `;
+    brand.insertAdjacentElement("afterend", button);
+  }
+
+  header.classList.add("has-burger-nav");
+
+  function closeMenu() {
+    header.classList.remove("is-nav-open");
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-label", "Открыть меню");
+  }
+
+  function toggleMenu() {
+    const isOpen = header.classList.toggle("is-nav-open");
+    button.setAttribute("aria-expanded", String(isOpen));
+    button.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+  }
+
+  button.addEventListener("click", toggleMenu);
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 760) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMenu();
+    }
+  });
+}
+
+document.querySelectorAll(".site-header").forEach(mountMobileNav);
 
 function mountScenarioPlanner(planner) {
   const buttons = planner.querySelectorAll("[data-scenario]");
@@ -267,6 +328,89 @@ function hydrateProducts() {
 
 hydrateProducts();
 
+function mountReviewCarousel(carousel) {
+  const track = carousel.querySelector("[data-carousel-track]");
+  const cards = Array.from(carousel.querySelectorAll(".review-card"));
+  const prevButton = carousel.querySelector("[data-carousel-prev]");
+  const nextButton = carousel.querySelector("[data-carousel-next]");
+  const dots = carousel.querySelector("[data-carousel-dots]");
+
+  if (!track || cards.length === 0) return;
+
+  let currentPage = 0;
+  let pageCount = 1;
+
+  function getVisibleCount() {
+    const value = window.getComputedStyle(track).getPropertyValue("--review-visible");
+    const parsed = Number.parseInt(value, 10);
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
+  }
+
+  function getOffsetForPage(page) {
+    const visibleCount = getVisibleCount();
+    const startIndex = Math.min(page * visibleCount, Math.max(cards.length - 1, 0));
+    return cards[startIndex]?.offsetLeft || 0;
+  }
+
+  function renderDots() {
+    if (!dots) return;
+    dots.innerHTML = "";
+
+    for (let index = 0; index < pageCount; index += 1) {
+      const dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = `carousel-dot${index === currentPage ? " is-active" : ""}`;
+      dot.setAttribute("aria-label", `Показать отзывы ${index + 1}`);
+      dot.addEventListener("click", () => {
+        currentPage = index;
+        update();
+      });
+      dots.appendChild(dot);
+    }
+  }
+
+  function update() {
+    const visibleCount = getVisibleCount();
+    pageCount = Math.max(1, Math.ceil(cards.length / visibleCount));
+    currentPage = Math.min(currentPage, pageCount - 1);
+
+    track.style.transform = `translateX(-${getOffsetForPage(currentPage)}px)`;
+
+    if (prevButton) prevButton.disabled = currentPage === 0;
+    if (nextButton) nextButton.disabled = currentPage >= pageCount - 1;
+
+    if (dots) {
+      dots.toggleAttribute("hidden", pageCount <= 1);
+      renderDots();
+    }
+    if (prevButton?.parentElement) {
+      prevButton.parentElement.toggleAttribute("hidden", pageCount <= 1);
+    }
+  }
+
+  prevButton?.addEventListener("click", () => {
+    if (currentPage === 0) return;
+    currentPage -= 1;
+    update();
+  });
+
+  nextButton?.addEventListener("click", () => {
+    if (currentPage >= pageCount - 1) return;
+    currentPage += 1;
+    update();
+  });
+
+  let resizeFrame = 0;
+  window.addEventListener("resize", () => {
+    window.cancelAnimationFrame(resizeFrame);
+    resizeFrame = window.requestAnimationFrame(update);
+  });
+
+  update();
+}
+
+document.querySelectorAll("[data-review-carousel]").forEach(mountReviewCarousel);
+
 function persistLead(payload) {
   const key = "medtehmaks_leads";
   const current = JSON.parse(window.localStorage.getItem(key) || "[]");
@@ -279,7 +423,7 @@ function ensureFormMeta(form) {
     const note = document.createElement("p");
     note.className = "form-note";
     note.textContent =
-      "После отправки покажем следующий шаг: куда вас лучше перевести — в звонок, мессенджер или точечный подбор.";
+      "После отправки сразу подскажем следующий шаг: позвонить, продолжить в мессенджере или быстро уточнить выбор.";
     form.appendChild(note);
   }
 
@@ -351,7 +495,7 @@ function mountLeadForm(form) {
     taskInput.value = "";
     if (submitButton) submitButton.textContent = "Заявка отправлена";
     window.setTimeout(() => {
-      if (submitButton) submitButton.textContent = "Получить подбор";
+      if (submitButton) submitButton.textContent = "Получить помощь с выбором";
     }, 2400);
   });
 }

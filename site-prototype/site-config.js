@@ -11,7 +11,7 @@ window.MEDTEHMAKS_SITE_CONFIG = {
     telegramHref: "https://t.me/medtehmaks",
     addressDisplay: "Москва, Каширское шоссе, 23",
     addressHref: "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9A%D0%B0%D1%88%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2C%2023",
-    mapsHref: "https://yandex.ru/maps/org/167033159095",
+    mapsHref: "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9A%D0%B0%D1%88%D0%B8%D1%80%D1%81%D0%BA%D0%BE%D0%B5%20%D1%88%D0%BE%D1%81%D1%81%D0%B5%2C%2023",
     responseTime: "до 15 минут",
     deliveryRegion: "по Москве и России",
     ratingDisplay: "4.3",
@@ -31,7 +31,7 @@ window.MEDTEHMAKS_SITE_CONFIG = {
       short:
         "Белье, рукава и мягкие товары восстановления с бережной консультацией без лишней спешки.",
       price: "по запросу",
-      priceNote: "подбор под ситуацию и нужный размер",
+      priceNote: "поможем выбрать под вашу ситуацию и нужный размер",
       availability: "Наличие уточним сразу"
     },
     orthopedic_supports: {
