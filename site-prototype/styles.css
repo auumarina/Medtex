@@ -2521,16 +2521,62 @@ p {
 
   .site-header {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
       "brand toggle"
-      "search search"
-      "nav"
-      "actions";
-    align-items: stretch;
-    gap: 14px;
-    padding: 16px;
+      "actions actions"
+      "search search";
+    align-items: center;
+    gap: 10px 12px;
+    padding: 14px;
     position: static;
+  }
+
+  .site-header.has-burger-nav.is-nav-open {
+    grid-template-areas:
+      "brand toggle"
+      "actions actions"
+      "search search"
+      "nav nav";
+  }
+
+  .site-header--compact {
+    grid-template-areas:
+      "brand toggle"
+      "actions actions";
+  }
+
+  .site-header--compact.has-burger-nav.is-nav-open {
+    grid-template-areas:
+      "brand toggle"
+      "actions actions"
+      "nav nav";
+  }
+
+  .site-header--compact.site-header--no-actions {
+    grid-template-areas:
+      "brand toggle";
+  }
+
+  .site-header--compact.site-header--no-actions.has-burger-nav.is-nav-open {
+    grid-template-areas:
+      "brand toggle"
+      "nav nav";
+  }
+
+  .brand-block {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .site-header .brand-mark,
+  .site-header .brand-mark img {
+    max-width: 100%;
+  }
+
+  .site-header .brand-mark img {
+    height: auto;
+    max-height: 44px;
   }
 
   .site-nav {
@@ -2584,7 +2630,19 @@ p {
 
   .header-actions {
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    justify-self: stretch;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .header-actions .phone-link {
+    font-size: clamp(0.9rem, 4vw, 1rem);
+  }
+
+  .header-actions .ghost-button {
+    padding: 11px 16px;
   }
 
   .hero-banner-content {
